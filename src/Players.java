@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.LinkedList;
 
 public class Players extends GameObject { //This class inherits methods from the GameObject class
 
@@ -29,8 +30,17 @@ public class Players extends GameObject { //This class inherits methods from the
         y = Game.clamp(y, 0, Game.HEIGHT - 64);
 
 
-
     }
+    private void Collision(LinkedList<GameObject> object)
+    {
+        for (int i = 0; i < handler.object.size(); i++)
+        {
+            GameObject tempObject = handler.object.get(i);
+
+            if(tempObject.getId() == ID.TankBullet2);
+        }
+    }
+
 
     public void render(Graphics g) {
         if(id == ID.Tank1)  g.setColor(Color.BLUE);

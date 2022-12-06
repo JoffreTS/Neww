@@ -39,7 +39,7 @@ public class Bullets extends GameObject {
     public void render(Graphics g) {
         if(id == ID.TankBullet1) g.setColor(Color.BLUE);
         else if(id == ID.TankBullet2) g.setColor(Color.RED);
-        g.fillRect(x, y, 16,16);
+        g.fillRect(x, y + 8, 16,16);
 
     }
 

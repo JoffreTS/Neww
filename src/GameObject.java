@@ -1,22 +1,21 @@
 import java.awt.Graphics;
-
+//Contains in game objects like players, projectiles, or anything we want to make appear on screen
 public abstract class GameObject {
-    protected int x, y;
-    protected ID id;
-
+    protected int x, y; //Protected variables ***
+    protected ID id; //allows game objects to contain an id
     protected int velX, velY;
     protected int facing = 1;
 
-    public GameObject (int x, int y, ID id) {
+    public GameObject (int x, int y, ID id) { //This will be used as a constructor to create gameobjects, similar to objects like Scanner is constructed.
         this.x = x;
         this.y = y;
         this.id = id;
     }
 
-    public abstract void tick();
-    public abstract void render(Graphics g);
+    public abstract void tick(); //game objects will be updated using the tick method
+    public abstract void render(Graphics g);//game objects will be updated using the render method
 
-
+//These methods are called to change positions of a game object
     public int getX() {
         return x;
     }
@@ -48,7 +47,7 @@ public abstract class GameObject {
         return id;
     }
 
-
+//These methods are used to change velocity
     public int getVelX() {
         return velX;
     }

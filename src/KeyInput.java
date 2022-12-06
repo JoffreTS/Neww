@@ -1,7 +1,7 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class KeyInput extends KeyAdapter {
+public class KeyInput extends KeyAdapter { //Uses key adapter to listen for keyboard inputs
 
     private Handler handler;
 

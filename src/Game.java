@@ -4,11 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-
+//This is our main class
 public class Game extends Canvas implements Runnable {
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9; //Variables used to control Window dimensions
 
-    private Thread thread;
+    private Thread thread; //Initializes thread. We haven't learned about this yet. Kind of tells the computer what path it should take while processing the program (I think?)
     private Handler handler;
     private boolean running = false;
     private Random r;
@@ -17,36 +17,35 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
 
-        handler = new Handler();
+        handler = new Handler(); //Handler initialization, see handler class
         this.addKeyListener(new KeyInput(handler));
-
-        new Window(WIDTH, HEIGHT, "Tanks!", this);
+        new Window(WIDTH, HEIGHT, "Tanks!", this); //Window initialization, see window class
 
         r = new Random();
 
 
-        handler.addObject(new Players(100, 200, ID.Tank1));
+        handler.addObject(new Players(100, 200, ID.Tank1)); //calls handler to make game objects, player 1 and 2
         handler.addObject(new Players(500, 200, ID.Tank2));
     }
 
-    public synchronized void start() {
+    public synchronized void start() { //Starts thread if running is true, starts run method
         if (running)
             return;
         running = true;
-        thread = new Thread(this);
-        thread.start();
+        thread = new Thread(this); //Creates thread object, gives location "this" see line 23
+        thread.start(); //Starts thread
     }
 
-    public synchronized void stop() {
-        try {
-            thread.join();
+    public synchronized void stop() { //closes thread, stops program
+        try { //Kind of an if statement, will run if it is able to, otherwise does whatever is in catch { }
+            thread.join(); //stops thread
             running = false;
         }catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); //Sends an error if the previous statement does not run
         }
     }
 
-    public void run() {
+    public void run() { //Game loop method
         this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -59,11 +58,11 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             while(delta >= 1) {
-                tick();
+                tick(); //Calls tick method repeatedly
                 delta--;
             }
             if(running)
-                render();
+                render(); //Calls render method repeatedly
             frames++;
 
             if(System.currentTimeMillis() - timer > 1000) {
@@ -72,21 +71,21 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
         }
-        stop();
+        stop(); //runs stop method and ends program
     }
 
 
 
 
     private void tick() {
-        handler.tick();
+        handler.tick(); //calls tick in handler class
 
     }
-
-    private void render() {
-        BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null) {
-            this.createBufferStrategy(3);
+//Most of this stuff below is confusing, it is creating, storing, and sending graphics to the window. This render method is called repeatedly in the game loop.
+    private void render() { //Buffer strategy is where images are stored before they are displayed in the window
+        BufferStrategy bs = this.getBufferStrategy(); //Creates BufferStrategy object
+        if (bs == null) { //BufferStrategy starts at 0, this if statement changes the value to the recommended value of 3
+            this.createBufferStrategy(3); //Creates 3 buffers, Bufferstrategy is confusing.
             return;
         }
 
@@ -94,7 +93,7 @@ public class Game extends Canvas implements Runnable {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-        handler.render(g);
+        handler.render(g); //calls render method in handler class
 
 
         g.dispose();
@@ -118,6 +117,6 @@ public class Game extends Canvas implements Runnable {
 
     public static void main (String [] args) {
         new Game();
-    }
+    } //Runs the Game method
 
 }

@@ -1,10 +1,10 @@
 import java.awt.*;
 
-public class Players extends GameObject {
+public class Players extends GameObject { //This class inherits methods from the GameObject class
 
     Handler handler = new Handler();
 
-    public Players(int x, int y, ID id) {
+    public Players(int x, int y, ID id) { //constructs GameObject method
         super(x, y, id);
         this.handler = handler;
 
@@ -19,7 +19,7 @@ public class Players extends GameObject {
         else if (velX > 0) facing = 1;
 
 
-        x += velX;
+        x += velX; //updates position of players based on Vel values
         y += velY;
 
         x = Game.clamp(x, 0, Game.WIDTH - 32);

@@ -13,6 +13,9 @@ public class Players extends GameObject { //This class inherits methods from the
     public Rectangle getBounds() {
         return new Rectangle(x, y, 32, 32);
     }
+    public Rectangle getBoundsCol() {
+        return new Rectangle(x, y, 32, 32);
+    }
 
     public void tick() {
         if(velX < 0) facing = -1;
@@ -33,6 +36,10 @@ public class Players extends GameObject { //This class inherits methods from the
         if(id == ID.Tank1)  g.setColor(Color.BLUE);
         else if (id == ID.Tank2) g.setColor(Color.RED);
         g.fillRect(x, y, 32,32);
+
+        Graphics2D g2d = (Graphics2D) g;
+        g.setColor(Color.white);
+        g2d.draw(getBoundsCol());
 
 
     }

@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.io.Console;
+import java.util.Scanner;
 
 public class Bullets extends GameObject {
 
@@ -11,15 +13,17 @@ public class Bullets extends GameObject {
         int power1 = 0;
         int power2 = 0;
         this.handler = handler;
-        if(id == ID.TankBullet1) {
+        if (id == ID.TankBullet1) {
 
             velX = 5;
+        } else if (id == ID.TankBullet2) {
+            velX = -5;
+
         }
+        velY = -5;
+        this.velX =velX;
 
-        else if(id == ID.TankBullet2) velX = -5;
-        this.velX = velX;
-
-    }
+}
     public double bullPhys(double vel){
         double g = -9.8;
         return 0.0;
@@ -28,10 +32,15 @@ public class Bullets extends GameObject {
     public Rectangle getBounds() {
         return new Rectangle(x, y, 4, 4);
     }
+    double count = 0;
 
+    Scanner s = new Scanner(System.in);
+
+    double velUpY = -10;
     public void tick() {
         x += velX;
-        y += velY;
+        velUpY = velUpY + (0.3);
+        y += velUpY;
 
     }
 

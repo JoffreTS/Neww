@@ -3,12 +3,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
-
+//Code referenced from https://www.youtube.com/watch?v=1gir2R7G9ws&list=PLWms45O3n--6TvZmtFHaCWRZwEqnz2MHa&index=1
+//Published by RealTutsGML
 //This is our main class
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9; //Variables used to control Window dimensions
 
-    private Thread thread; //Initializes thread. We haven't learned about this yet. Kind of tells the computer what path it should take while processing the program (I think?)
+    private Thread thread; //Initializes thread. We haven't learned about this yet. Kind of tells the computer
+    // what path it should take while processing the program (I think?)
     private Handler handler;
     private boolean running = false;
     private Random r;
@@ -85,7 +87,7 @@ public class Game extends Canvas implements Runnable {
     private void render() { //Buffer strategy is where images are stored before they are displayed in the window
         BufferStrategy bs = this.getBufferStrategy(); //Creates BufferStrategy object
         if (bs == null) { //BufferStrategy starts at 0, this if statement changes the value to the recommended value of 3
-            this.createBufferStrategy(3); //Creates 3 buffers, Bufferstrategy is confusing.
+            this.createBufferStrategy(3); //Creates 3 buffers, Buffer strategy is confusing.
             return;
         }
 

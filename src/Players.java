@@ -38,6 +38,7 @@ public class Players extends GameObject { //This class inherits methods from the
             GameObject tempObject = handler.object.get(i);
 
             if(tempObject.getId() == ID.TankBullet2);
+
         }
     }
 
